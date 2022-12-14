@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import Swiper from "react-native-swiper";
-import { Slider1SVG } from "../components/SVGs/OnboardingSVG";
-import { Fonts } from "../constants/fonts";
-import { Colors } from "../constants/colors";
+import { Slider1SVG } from "../../components/SVGs/OnboardingSVG";
+import { Fonts } from "../../constants/fonts";
+import { Colors } from "../../constants/colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type RootStackParamList = {

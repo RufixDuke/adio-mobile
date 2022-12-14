@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { Slider1SVG, Welcome1SVG } from "../../components/SVGs/OnboardingSVG";
+import { Welcome2SVG } from "../../../components/SVGs/OnboardingSVG";
 
-const Welcome1 = () => {
+const Welcome2 = () => {
   return (
     <View style={styles.wrapper}>
       <View>
-        <Welcome1SVG />
+        <Welcome2SVG />
         <StatusBar style="auto" />
       </View>
     </View>
@@ -17,10 +17,10 @@ const Welcome1 = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#247AD1",
     alignItems: "center",
     justifyContent: "center",
   },
 });
 
-export default Welcome1;
+export default Welcome2;
