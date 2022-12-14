@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useState } from "react";
+import { RootStack } from "./navigation/RootStack";
+import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [appIsReady, setAppIsReady] = useState(false);
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await Font.loadAsync({
+          Bold: require("./assets/fonts/OpenSans-Bold.ttf"),
+          Light: require("./assets/fonts/OpenSans-Light.ttf"),
+          Medium: require("./assets/fonts/OpenSans-Medium.ttf"),
+          Regular: require("./assets/fonts/OpenSans-Regular.ttf"),
+          SemiBold: require("./assets/fonts/OpenSans-SemiBold.ttf"),
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
+  }
+  return <RootStack />;
+}
