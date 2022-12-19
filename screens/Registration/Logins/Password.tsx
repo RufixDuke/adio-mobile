@@ -11,19 +11,19 @@ import React, { useState } from "react";
 import { Colors } from "../../../constants/colors";
 import { Fonts } from "../../../constants/fonts";
 
-interface NextPageProp {
+interface NavProps {
   position: any;
 }
 
-const ConfirmPassword = ({ position }: NextPageProp) => {
+const Password = ({ position }: NavProps) => {
   const [showPassword, setShowPassword] = useState(true);
-
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Pressable style={styles.wrapper} onPress={() => Keyboard.dismiss()}>
-        <Text style={styles.header}>Confirm your password</Text>
+        <Text style={styles.header}>Input your password</Text>
         <Text style={styles.description}>
-          Please re-enter your password to confirm.
+          You already have an account created with this email. Please input your
+          password
         </Text>
 
         <View style={styles.inputField}>
@@ -46,14 +46,18 @@ const ConfirmPassword = ({ position }: NextPageProp) => {
 
       <View style={{ marginBottom: 30, marginTop: 20 }}>
         <Pressable style={styles.nextBtn} onPress={position}>
-          <Text style={styles.btnText}>Next</Text>
+          <Text style={styles.btnText}>Login</Text>
         </Pressable>
 
-        <Text style={{ textAlign: "center", marginTop: 10 }}>
-          Already have an account?{" "}
-          <Text style={{ color: "#247AD1", fontFamily: Fonts.Regular }}>
-            Login
-          </Text>
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: 10,
+            fontFamily: Fonts.Regular,
+          }}
+        >
+          Don't have an account?{" "}
+          <Text style={{ color: "#247AD1" }}>Create an account</Text>
         </Text>
       </View>
     </KeyboardAvoidingView>
@@ -106,7 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Primary,
     paddingVertical: 20,
     borderRadius: 30,
-
     marginHorizontal: 20,
   },
   btnText: {
@@ -115,5 +118,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: Fonts.Medium,
   },
+  label: {
+    marginBottom: 5,
+    fontFamily: Fonts.Medium,
+    color: Colors.header,
+    fontSize: 15,
+  },
 });
-export default ConfirmPassword;
+export default Password;

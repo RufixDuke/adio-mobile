@@ -7,40 +7,32 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { Colors } from "../../../constants/colors";
 import { Fonts } from "../../../constants/fonts";
 
-interface NextPageProp {
+interface NavProps {
   position: any;
 }
 
-const ConfirmPassword = ({ position }: NextPageProp) => {
-  const [showPassword, setShowPassword] = useState(true);
-
+const EmailLogin = ({ position }: NavProps) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Pressable style={styles.wrapper} onPress={() => Keyboard.dismiss()}>
-        <Text style={styles.header}>Confirm your password</Text>
+        <Text style={styles.header}>What is your Email Address</Text>
         <Text style={styles.description}>
-          Please re-enter your password to confirm.
+          Please log in with the email address that you used to create your
+          account.
         </Text>
 
         <View style={styles.inputField}>
           <TextInput
             style={styles.input}
-            keyboardType="default"
+            keyboardType="email-address"
             returnKeyType="done"
-            placeholder="********************"
+            placeholder="Input your email address"
             placeholderTextColor={Colors.header}
-            secureTextEntry={showPassword}
           />
-          <Text
-            style={styles.password}
-            onPress={() => setShowPassword(!showPassword)}
-          >
-            SHOW
-          </Text>
         </View>
       </Pressable>
 
@@ -49,11 +41,15 @@ const ConfirmPassword = ({ position }: NextPageProp) => {
           <Text style={styles.btnText}>Next</Text>
         </Pressable>
 
-        <Text style={{ textAlign: "center", marginTop: 10 }}>
-          Already have an account?{" "}
-          <Text style={{ color: "#247AD1", fontFamily: Fonts.Regular }}>
-            Login
-          </Text>
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: 10,
+            fontFamily: Fonts.Regular,
+          }}
+        >
+          Don't have an account?{" "}
+          <Text style={{ color: "#247AD1" }}>Create an account</Text>
         </Text>
       </View>
     </KeyboardAvoidingView>
@@ -106,7 +102,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Primary,
     paddingVertical: 20,
     borderRadius: 30,
-
     marginHorizontal: 20,
   },
   btnText: {
@@ -115,5 +110,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: Fonts.Medium,
   },
+  label: {
+    marginBottom: 5,
+    fontFamily: Fonts.Medium,
+    color: Colors.header,
+    fontSize: 15,
+  },
 });
-export default ConfirmPassword;
+export default EmailLogin;

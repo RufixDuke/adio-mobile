@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { Colors } from "../../../constants/colors";
 import { Fonts } from "../../../constants/fonts";
 
@@ -15,32 +15,24 @@ interface NextPageProp {
   position: any;
 }
 
-const ConfirmPassword = ({ position }: NextPageProp) => {
-  const [showPassword, setShowPassword] = useState(true);
-
+const Email = ({ position }: NextPageProp) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Pressable style={styles.wrapper} onPress={() => Keyboard.dismiss()}>
-        <Text style={styles.header}>Confirm your password</Text>
+        <Text style={styles.header}>What is your Email Address</Text>
         <Text style={styles.description}>
-          Please re-enter your password to confirm.
+          We will send you a verification code via text message to confirm that
+          this is your email address.
         </Text>
 
         <View style={styles.inputField}>
           <TextInput
             style={styles.input}
-            keyboardType="default"
+            keyboardType="email-address"
             returnKeyType="done"
-            placeholder="********************"
+            placeholder="Input your email address"
             placeholderTextColor={Colors.header}
-            secureTextEntry={showPassword}
           />
-          <Text
-            style={styles.password}
-            onPress={() => setShowPassword(!showPassword)}
-          >
-            SHOW
-          </Text>
         </View>
       </Pressable>
 
@@ -66,6 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   wrapper: {
+    flex: 1,
     marginHorizontal: 25,
     paddingTop: 20,
   },
@@ -106,7 +99,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Primary,
     paddingVertical: 20,
     borderRadius: 30,
-
     marginHorizontal: 20,
   },
   btnText: {
@@ -116,4 +108,4 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Medium,
   },
 });
-export default ConfirmPassword;
+export default Email;

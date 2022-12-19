@@ -4,20 +4,17 @@ import React, { useRef, useState } from "react";
 import { SVG } from "../../components/SVGs/SVGs";
 import StepIndicator from "react-native-step-indicator";
 import Swiper from "react-native-swiper";
-import CreatePassword from "./SignUpSwipers/CreatePassword";
-import ConfirmPassword from "./SignUpSwipers/ConfirmPassword";
-import Email from "./SignUpSwipers/Email";
-import PersonalInfo from "./SignUpSwipers/PersonalInfo";
+import EmailLogin from "./Logins/EmailLogin";
+import Password from "./Logins/Password";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type RootStackParamList = {
-  SignUpScreen: undefined;
-  VerifyScreen: undefined;
+  LoginScreen: undefined;
 };
 
-type Props = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
+type Props = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
 
-const SignUpScreen = ({ navigation }: Props) => {
+const LoginScreen = ({ navigation }: Props) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const swiperRef = useRef<React.ElementRef<typeof Swiper> | null>(null);
   const next = () => {
@@ -45,7 +42,7 @@ const SignUpScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      <Pressable style={styles.backBtn}>
+      <Pressable style={styles.backBtn} onPress={() => navigation.goBack()}>
         <SVG
           svg={`<svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M7.13158 14.3949L1.07894 8.34227C0.947365 8.2107 0.854382 8.06815 0.799996 7.91464C0.744733 7.76113 0.717102 7.59666 0.717102 7.42122C0.717102 7.24578 0.744733 7.08131 0.799996 6.9278C0.854382 6.77429 0.947365 6.63175 1.07894 6.50017L7.13158 0.447535C7.37281 0.206307 7.67982 0.0856934 8.05263 0.0856934C8.42544 0.0856934 8.73245 0.206307 8.97368 0.447535C9.21491 0.688763 9.33552 0.995781 9.33552 1.36859C9.33552 1.7414 9.21491 2.04841 8.97368 2.28964L3.8421 7.42122L8.97368 12.5528C9.21491 12.794 9.33552 13.101 9.33552 13.4739C9.33552 13.8467 9.21491 14.1537 8.97368 14.3949C8.73245 14.6361 8.42544 14.7568 8.05263 14.7568C7.67982 14.7568 7.37281 14.6361 7.13158 14.3949Z" fill="#247AD1"/>
@@ -54,9 +51,8 @@ const SignUpScreen = ({ navigation }: Props) => {
           height={"14.67px"}
         />
       </Pressable>
-
       <StepIndicator
-        stepCount={4}
+        stepCount={2}
         customStyles={customStyles}
         currentPosition={currentPosition}
         onPress={onStepPress}
@@ -72,10 +68,8 @@ const SignUpScreen = ({ navigation }: Props) => {
         showsPagination={false}
         ref={swiperRef}
       >
-        <Email position={() => next()} />
-        <CreatePassword position={() => next()} />
-        <ConfirmPassword position={() => next()} />
-        <PersonalInfo nav={() => navigation.navigate("VerifyScreen")} />
+        <EmailLogin position={() => next()} />
+        <Password position={() => next()} />
       </Swiper>
 
       <StatusBar style="auto" />
@@ -102,4 +96,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-export default SignUpScreen;
+export default LoginScreen;
