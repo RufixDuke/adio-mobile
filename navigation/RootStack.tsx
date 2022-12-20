@@ -13,6 +13,8 @@ import HomeScreen from "../screens/HomeScreen/HomeScreen";
 import ForgotPassword from "../screens/Registration/ForgotPassword";
 import Check from "../screens/Registration/ForgotPassword/Check";
 import CreateNewPassword from "../screens/Registration/ForgotPassword/CreateNewPassword";
+import { TabNavigator } from "./TabNavigation";
+import BottomTabs from "./BottomTabs";
 
 const screenOptions = {
   headerShown: false,
@@ -37,7 +39,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export const RootStack = () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="AddDevices"
+      initialRouteName="HomeScreen"
       screenOptions={screenOptions}
     >
       <Stack.Screen name="Welcome1" component={Welcome1} />
@@ -48,7 +50,12 @@ export const RootStack = () => (
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="AddDevices" component={AddDevices} />
       <Stack.Screen name="AddLocation" component={AddLocation} />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      {/* <Stack.Screen name="HomeScreen" component={TabNavigator} /> */}
+      <Stack.Screen
+        name="HomeScreen"
+        component={BottomTabs}
+        // options={{ headerShown: true }}
+      />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="Check" component={Check} />
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
